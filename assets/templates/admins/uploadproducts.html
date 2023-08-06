@@ -1,0 +1,112 @@
+{% extends 'general/general.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+
+<style>
+.uploadprod{
+margin-left:300px;
+background:;
+float:left;
+padding:10px;
+width:25%;
+}
+table{
+width:30%;
+}
+tr{
+height:60px;
+}
+td{
+align:center;
+align:center;
+}
+input[type=text],input[type=number],input[type=password],input[type=email],select{
+width:100%;
+background:none;
+border:1px solid white;
+padding:10px;
+color:white;
+}
+select{
+background:none;
+color:black;
+}
+input[type=submit]{
+width:40%;
+height:40px;
+background:none;
+border:1px solid white;
+text-transform:uppercase;
+color:white;
+cursor:pointer;
+padding:2px;
+}
+input[type=submit]:hover{
+background:white;
+color:rgb(94, 142, 137);
+font-weight: bold;
+}
+::placeholder{
+color:white;
+}
+.image{
+border-style:solid;
+height:400px;
+width:600px;
+margin-top:50px;
+margin-left:700px;
+background: url("{% static '12.png' %}");
+ background-size:100%100%;
+
+
+}
+
+</style>
+
+<div class="uploadprod">
+    {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+<form method="Post" enctype="multipart/form-data" autocomplete="off">
+{% csrf_token %}
+<table>
+    <tr>
+       <td>{{form.product_name}}</td>
+    </tr>
+    <tr>
+        <td>{{form.vendor_name}}</td>
+    </tr>
+    <tr>
+        <td>{{form.version_name}}</td>
+    </tr>
+    <tr>
+        <td>{{form.color}}</td>
+    </tr>
+    <tr>
+        <td>{{form.price}}</td>
+    </tr>
+    <tr>
+        <td>{{form.featuers}}</td>
+    </tr>
+    <tr>
+        <td>{{form.images}}</td>
+    </tr>
+    <tr>
+        <td align="center"><input type="submit" name="submit" value="submit"></td>
+    </tr>
+</table>
+</form>
+</div>
+<div class="image"></div>
+{% endblock %}

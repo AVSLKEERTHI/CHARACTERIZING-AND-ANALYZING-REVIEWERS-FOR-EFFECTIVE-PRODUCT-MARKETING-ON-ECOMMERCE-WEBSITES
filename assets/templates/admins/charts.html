@@ -1,0 +1,76 @@
+{% extends 'general/general.html' %}
+{% block mainblock %}
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Comparision of Various Vendors For Product : {{chart_type}}"
+	},
+	axisY: {
+		title: "Ratings"
+	},
+	data: [{
+		type: "column",
+		showInLegend: true,
+		legendMarkerColor: "grey",
+		legendText: "Vendor-wise Gross Ratings for Product",
+		dataPoints: [
+		{% for dd in d %}
+			{ y: {{dd.dcount}}, label: "{{dd.product__vendor_name}}"},
+		{% endfor %}
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+<script>
+    function myFunction() {
+    var x = document.getElementById("chartoption").value;
+    if(x == "accuracy"){
+    window.location.href="{% url 'admins:charts' 'all' %}";
+    }
+    else if(x == "clusterwise"){
+    window.location.href="{% url 'admins:charts1' 'pie' %}";
+    }
+    else if(x == "orginalclus"){
+    window.location.href="{% url 'admins:charts2' 'bar' %}";
+    }
+    else if(x == "sentiment"){
+    window.location.href="{% url 'admins:charts3' 'bar' %}";
+    }
+}
+    function myFunc(){
+        var x = document.getElementById("chartsuboption").value;
+        if(x == "mobile"){
+            window.location.href="{% url 'admins:charts' 'mobile' %}";
+        }
+        else if(x == "all"){
+            window.location.href="{% url 'admins:charts' 'all' %}";
+        }
+        else if(x == "laptop"){
+            window.location.href="{% url 'admins:charts' 'laptop' %}";
+        }else if(x == "mobile accessories"){
+            window.location.href="{% url 'admins:charts' 'mobileaccessories' %}";
+        }else if(x == "watches"){
+            window.location.href="{% url 'admins:charts' 'watches' %}";
+        }else if(x == "shoes"){
+            window.location.href="{% url 'admins:charts' 'shoes' %}";
+        }
+    }
+</script>
+<select id="chartoption" onchange="myFunction()">
+    <option>Please Select the Type of the Chart Analysis</option>
+
+    <option value="clusterwise">Knowledge based Opinion</option>
+    <option value="orginalclus">Region-wise Opinion Analysis</option>
+    <option value="sentiment">Sentiment-Wise</option>
+</select><br/><br/><br/><br/>
+
+<div id="chartContainer" style="height: 500px; width: 800px;margin-top:-80px;margin-left:330px"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'general/general.html' %}
+{% block mainblock %}
+{% load staticfiles %}
+<style>
+    .rwhldr{
+    height:80%;
+    width:100%;
+    overflow:auto;
+    }
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="rwhldr">
+  <div class="row" style="margin-left:20px;">
+      {% for pro in products %}
+    <div class="col-sm-4" style="background-color:;border:;">
+        <table align="center" style="margin-top:10px;">
+            <tr>
+                <td colspan="3" align="center"><img src="{{pro.images.url}}" style="width:20em;height:20em;"></td>
+            </tr>
+            <tr style="visibility:hidden;">
+                <td>df</td>
+            </tr>
+            <tr>
+                <td style="color:white">Product Name</td>
+                <td style="color:white">:</td>
+                <td height="30px" style="color:white">{{pro.product_name}}</td>
+            </tr>
+            <tr>
+                <td style="color:white">Vendor Name</td>
+                <td style="color:white">:</td>
+                <td height="30px" style="color:white">{{pro.vendor_name}}</td>
+            </tr>
+            <tr>
+                <td style="color:white">Color</td>
+                <td style="color:white">:</td>
+                <td height="30px" style="color:white">{{pro.color}}</td>
+            </tr>
+            <tr>
+                <td style="color:white">Price</td>
+                <td style="color:white">:</td>
+                <td height="30px" style="color:white">{{pro.price}}</td>
+            </tr>
+            <tr>
+                <td style="color:white">Featuers</td>
+                <td style="color:white">:</td>
+                <td height="110" width="220" style="color:white">{{pro.featuers}}</td>
+            </tr>
+            <tr>
+                <td><a href="{% url 'user:viewproduct' pro.id %}">View</a></td>
+            </tr>
+            <tr style="visibility:hidden;">
+                <td>df</td>
+            </tr>
+        </table>
+    </div>
+      {% endfor %}
+    </div>
+    </div>
+{% endblock %}

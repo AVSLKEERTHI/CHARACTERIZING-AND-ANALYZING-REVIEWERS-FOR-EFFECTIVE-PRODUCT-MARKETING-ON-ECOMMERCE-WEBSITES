@@ -1,0 +1,87 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body{
+        background-image: url('{% static 'red1.jpg' %}');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        padding:0px;
+        margin:0px;
+        }
+        .imgg{
+        position:fixed;
+        padding:0px;
+        margin:0px;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.6);
+        }
+        .title h2{
+        text-align:center;
+        padding:10px;
+        }
+        .headings ul {
+        width:100%;
+        text-align:center;
+
+        }
+        .headings ul li:hover,.headings ul li:hover a{
+        background:red;
+        color:white;
+        }
+        .headings ul li a {
+        text-decoration:none;
+        color:yellow;
+        }
+        .headings ul li {
+        padding:10px;
+        text-algin:center;
+        border:1px solid white;
+        width:20%;
+        color:pink;
+         background:blue;
+    display: inline-block;
+}
+    </style>
+</head>
+<body>
+    <div class="imgg">
+        <div class="title"><h2 style="color:white;">CHARACTERIZING AND PREDICTING EARLY REVIEWERS FOR EFFECTIVE PRODUCT MARKETING ON E-COMMERCE WEBSITES</h2></div>
+        {% if request.session.userid %}
+            {% if request.session.username == 'admin' %}
+            <div class="headings">
+                <ul>
+                    <li>
+                        <a href="{% url 'admins:home' %}" >home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'admins:uploadproducts' %}">upload products</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'admins:charts' 'all' %}">chart</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'admins:logout' %}">logout</a>
+                    </li>
+                </ul>
+            </div>
+            {% else %}
+            <div class="headings">
+                <ul>
+                    <li><a href="{% url 'user:home' %}">home</a></li>
+                    <li><a href="{% url 'user:cart' %}">cart</a></li>
+                    <li><a href="{% url 'user:logout' %}">logout</a></li>
+                </ul>
+            </div>
+            {% endif %}
+        {% endif %}
+        {% block mainblock %}
+        {% endblock %}
+    </div>
+</body>
+</html>

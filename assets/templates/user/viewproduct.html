@@ -1,0 +1,120 @@
+{% extends 'general/general.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+
+<style>
+.uploadprod{
+margin-left:200px;
+background:);
+float:left;
+padding:10px;
+
+overflow:scroll;
+}
+table{
+width:30%;
+}
+tr{
+height:20px;
+}
+td{
+align:center;
+align:center;
+}
+input[type=text],input[type=number],input[type=password],input[type=email],select{
+width:100%;
+background:none;
+border:1px solid white;
+padding:10px;
+color:white;
+}
+select{
+background:none;
+color:black;
+}
+input[type=submit]{
+width:50%;
+height:40px;
+background:none;
+border:1px solid white;
+text-transform:uppercase;
+color:white;
+cursor:pointer;
+padding:2px;
+}
+input[type=submit]:hover{
+background:white;
+color:rgb(94, 142, 137);
+font-weight: bold;
+}
+::placeholder{
+color:white;
+}
+ .image{
+border-style:solid;
+height:400px;
+width:550px;
+margin-top:50px;
+margin-left:780px;
+background: url("{% static '12.png' %}");
+ background-size:100%100%;
+}
+</style>
+
+<div class="uploadprod" style="width:500px;height:450px;overflow:scroll;">
+    <form method="post" autocomplete="off">
+        {% csrf_token %}
+<table >
+    <tr>
+        <td colspan="3"><img src="{{prod.images.url}}" style="width:400px"></td>
+    </tr>
+    <tr>
+        <td style="color:white">Product</td>
+        <td style="color:white">:</td>
+       <td style="color:white">{{prod.product_name}}</td>
+    </tr>
+    <tr>
+        <td style="color:white">Vendor</td>
+        <td style="color:white">:</td>
+        <td style="color:white">{{prod.vendor_name}}</td>
+    </tr>
+    <tr>
+        <td style="color:white">Product Version Name</td>
+        <td style="color:white">:</td>
+        <td style="color:white">{{prod.version_name}}</td>
+    </tr>
+    <tr>
+        <td style="color:white">Product Color</td>
+        <td style="color:white"> :</td>
+        <td style="color:white">{{prod.color}}</td>
+    </tr>
+    <tr>
+        <td style="color:white">Product Price</td>
+        <td style="color:white">:</td>
+        <td style="color:white">{{prod.price}}</td>
+    </tr>
+    <tr>
+        <td style="color:white">Product Featuers</td>
+        <td style="color:white">:</td>
+        <td style="color:white">{{prod.featuers}}</td>
+    </tr>
+    <tr>
+        <td style="color:white">Product Quantity</td>
+        <td style="color:white">:</td>
+        <td style="color:white">{{form}}</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3"><input type="submit" name="submit" value="ADD TO CART"></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2"><a href="{% url 'user:ratings' ipk %}">View Ratings</a></td>
+        <td align="center"><a href="{% url 'user:addratings' ipk %}">Add Ratings</a></td>
+    </tr>
+    </table>
+    </form>
+    </div>
+<script>
+
+</script>
+<div class="image"></div>
+{% endblock %}

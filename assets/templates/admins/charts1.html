@@ -1,0 +1,56 @@
+{% extends 'general/general.html' %}
+{% block mainblock %}
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Comparision of Various Profesion of Users"
+	},
+	axisY: {
+		title: "Ratings",
+	},
+	data: [{
+		type: "spline",
+		dataPoints: [
+
+		{% for dd in d %}
+			{ y: {{dd.dcount}}, label: "{{dd.user__location}}"},
+		{% endfor %}
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+
+<script>
+    function myFunction() {
+    var x = document.getElementById("chartoption").value;
+    if(x == "accuracy"){
+    window.location.href="{% url 'admins:charts' 'column' %}";
+    }
+    else if(x == "clusterwise"){
+    window.location.href="{% url 'admins:charts1' 'pie' %}";
+    }
+    else if(x == "orginalclus"){
+    window.location.href="{% url 'admins:charts2' 'bar' %}";
+    }
+    else if(x == "sentiment"){
+    window.location.href="{% url 'admins:charts3' 'bar' %}";
+    }
+}
+</script>
+<select id="chartoption" onchange="myFunction()">
+    <option>Please Select the Type of the Chart Analysis</option>
+
+    <option value="clusterwise">Knowledge based Opinion</option>
+    <option value="orginalclus">Region-wise Opinion Analysis</option>
+    <option value="sentiment">Sentiment-Wise</option>
+</select>
+<div id="chartContainer" style="height: 500px; width: 800px;margin-top:-10px;margin-left:330px"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+{% endblock %}

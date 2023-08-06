@@ -1,0 +1,59 @@
+{% extends 'general/general.html' %}
+{% block mainblock %}
+{% load staticfiles %}
+
+<style>
+    table{
+    margin-left:200px;
+    margin-top:150px;
+    border-collapse:collapse;
+    background:rgba(255,255,255,0.2);
+    }
+    table tr th,table tr td{
+    color:white;
+    border:1px solid white;
+    padding:5px;
+    }
+    .image{
+border-style:solid;
+height:500px;
+width:600px;
+margin-top:-230px;
+margin-left:700px;
+background: url("{% static '13.gif' %}");
+ background-size:100%100%;
+
+
+}
+</style>
+<table>
+    <tr>
+        <th>Customer Name</th>
+        <th>Product</th>
+        <th>Purchasing Status</th>
+    </tr>
+    {% for fb in p %}
+    <tr>
+        <td>{{fb.customer.username}}</td>
+        <td>{{fb.purhased.product_name}}-{{fb.purhased.version_name}}-{{fb.purhased.vendor_name}}</td>
+        <td>{{fb.quantity}}</td>
+        {% endfor %}
+    </tr>
+    <tr style="visibility:hidden">
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3">
+            <form method="post">
+                {% csrf_token %}
+                <input type="submit" name="submit" value="check out">
+            </form>
+        </td>
+    </tr>
+</table>
+<div class="image"></div>
+
+
+{% endblock %}

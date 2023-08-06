@@ -1,0 +1,111 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static 'js/state.js' %}"></script>
+<script>
+$(document).ready(function(){
+    $("#password2").blur(function(){
+    	var p1=$("#{{form.password.id_for_label}}").val();
+        var p2=$("#password2").val();
+        if(p1==p2){
+            $("tr#msgnote").css('visibility', 'collapse');
+        }
+        else{
+        	$("tr#msgnote").css('visibility', 'visible');
+        }
+    });
+});
+</script>
+<style>
+ body{
+        background-image: url('{% static 'image/ecommerce.jpg' %}');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        padding:0px;
+        margin:0px;
+        }
+        .imag{
+        position:fixed;
+        padding:0px;
+        margin:0px;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.6);
+        }
+
+     .login{
+    background:rgba(255,255,255,0.5);
+    border:3px solid white;
+    float:left;
+    padding:20px;
+    align:center;
+    margin-top:10%;
+    margin-left:30%;
+    }
+</style>
+    </head>
+<body>
+<div class="imag">
+    <h2 style="color:yellow; font-family:;margin-left:70px">
+CHARACTERIZING AND PREDICTING EARLY REVIEWERS FOR EFFECTIVE PRODUCT MARKETING ON </h2><h2 style="color:yellow; font-family:;margin-left:500px">E-COMMERCE WEBSITES</h2>
+
+
+<div class="login">
+<form method="post" autocomplete="off">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><label>Firstname</label></td>
+            <td>{{form.firstname}}</td>
+        </tr>
+        <tr>
+            <td><label>Lastname</label></td>
+            <td>{{form.lastname}}</td>
+        </tr>
+        <tr>
+            <td><label>Username</label></td>
+            <td>{{form.username}}</td>
+        </tr>
+        <tr>
+            <td><label>Password</label></td>
+            <td>{{form.password}}</td>
+        </tr>
+        <tr>
+            <td><label>ReEnter Password</label></td>
+            <td><input type="password" name="password2" id="password2" placeholder="enter password again" required></td>
+        </tr>
+        <tr id="msgnote" style="visibility:collapse">
+            <td></td>
+            <td><p style="color:red;">Both Passwords are not match.Make sure passwords are same</p></td>
+        </tr>
+        <tr>
+            <td><label>Profession</label></td>
+            <td>{{form.profession}}</td>
+        </tr>
+        <tr>
+            <td><label>Email Id</label></td>
+            <td>{{form.email}}</td>
+        </tr>
+        <tr>
+            <td><label>Mobile Number</label></td>
+            <td>{{form.mobile}}</td>
+        </tr>
+        <tr>
+            <td><label>Location</label></td>
+            <td><select id="listBox" onchange='selct_district(this.value)'></select>
+        <select id='secondlist' name="location" required></select></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" name="submit" value="submit"></td>
+        </tr>
+    </table>
+</form>
+</div>
+    </div>
+</body>
+</html>
