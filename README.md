@@ -1,3 +1,2 @@
 # CHARACTERIZING-AND-ANALYZING-REVIEWERS-FOR-EFFECTIVE-PRODUCT-MARKETING-ON-ECOMMERCE-WEBSITES
--The effective analysis of the reviews is made using Navive Bayes classifier in NLP task for sentiment analysis. 
-+Analyzing the reviews of customers based on their region, knowledge and sentiment to generate graphs for improving the marketing techniques
+The characterization of reviews is necessary for ecommerce websites as the user's remarks can help them to adjust marketing strategies and improve product quality that eventually leads to profit.The effective analysis of the reviews is made using Navive Bayes classifier in NLP task for sentiment analysis. Based on the feedback generated region, knowledge and sentiment wise graphs are generated for improving the marketing techniques.
